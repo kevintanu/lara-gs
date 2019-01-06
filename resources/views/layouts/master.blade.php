@@ -11,7 +11,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <title>AdminLTE 3 | Starter</title>
+  <title>Gold Storage</title>
 
   <link rel="stylesheet" href="/css/app.css">
 </head>
@@ -65,7 +65,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <img src="/img/man.png" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">{{ Auth::user()->name }}</a>
+          <a href="#" class="d-block">{{ Auth::user()->username }}</a>
         </div>
       </div>
 
@@ -99,12 +99,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-power-off"></i>
-              <p>
-                Keluar
-              </p>
+            <a class="nav-link" href="{{ route('logout') }}"
+                onclick="event.preventDefault();
+                              document.getElementById('logout-form').submit();">
+            <i class="nav-icon fas fa-power-off"></i>
+                <p> {{ __('Keluar') }} </p>
             </a>
+
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
           </li>
           {{-- <li class="nav-item has-treeview menu-open">
             <a href="#" class="nav-link">
@@ -170,6 +174,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 </div>
 <!-- ./wrapper -->
 
-<script src="js/app.js"></script>
+<script src="/js/app.js"></script>
 </body>
 </html>
